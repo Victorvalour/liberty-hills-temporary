@@ -40,7 +40,7 @@ export default function Home() {
 
 <div className="flex bg-slate-900 rounded-md w-screen md:w-full items-center justify-between px-6 md:px-20 border-y-2 border-y-slate-100">
   <p className="text-4xl text-transparent text-center font-bold gradient-text animate-gradient">
-      We're launching soon!!!
+      We&apos;re launching soon!!!
      </p> 
      <Image src={HappyCartoon} alt="cartoon" className="w-[100px]" />
      </div>
