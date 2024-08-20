@@ -1,16 +1,31 @@
+"use client"
+
 import { Button, MovingBorder } from "@/components/ui/moving-border";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Logo from "../assets/lhs-logo-png.png"
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import Electrician from "../assets/electrician-img.jpg"
 import HappyCartoon from "../assets/happy-cartoon-png.png"
 import Container from "./components/Container";
 import { FaSquareFacebook } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { ngst } from "@/utils/states-and-lgas";
+import { useState } from "react";
 
 export default function Home() {
+
+  const [state, setState] = useState()
   return (
     
     
@@ -62,6 +77,23 @@ export default function Home() {
                     <div>
                     <Input type="email" placeholder="Email" className="bg-slate-100 text-slate-900"/>
                     </div>
+                    <Select>
+      <SelectTrigger className="w-[280px] text-slate-900">
+        <SelectValue placeholder="Select your state" />
+      </SelectTrigger>
+      <SelectContent>
+       
+        <SelectGroup>
+          <SelectLabel>State</SelectLabel>
+          {ngst.map((state) => {
+      return   <div key={state.ID}>
+  <SelectItem value={state.ID}>{state.Name}</SelectItem>
+  </div>
+        })}
+          <SelectItem value="art">Argentina Time (ART)</SelectItem>
+        </SelectGroup>
+      </SelectContent>
+    </Select>
                     <div>
                     <Button borderRadius="5px" containerClassName="w-full h-[40px] active:w-[95%] hover:bg-[#fcba03]" className="focus:w-[90%]">Submit</Button>
                     </div>
