@@ -1,7 +1,7 @@
 import { Button, MovingBorder } from "@/components/ui/moving-border";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import Logo from "../assets/liberty-logo-black.png"
+import Logo from "../assets/lhs-logo-png.png"
 import { Input } from "@/components/ui/input";
 import Electrician from "../assets/electrician-img.jpg"
 import HappyCartoon from "../assets/happy-cartoon-png.png"
@@ -29,7 +29,7 @@ export default function Home() {
 
       <div className="flex flex-col items-center mx-auto md:w-1/2 w-full gap-6">
       <div className="flex justify-between w-full items-center px-4 py-6">
-      <Image src={Logo} alt="logo" width={80} className="rounded-2xl w-[100px]" />
+      <Image src={Logo} alt="logo" width={100} className="rounded-2xl w-[100px]" />
         <div className="flex gap-4 text-2xl text-slate-100">
         <FaSquareFacebook />
         <FaInstagramSquare />
