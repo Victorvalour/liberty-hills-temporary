@@ -1,10 +1,9 @@
 const ngst = [
-    {"ID": "0", "Name": "----Choose State----"},
-    {"ID": "Abuja", "Name": "Abuja"},
+
     {"ID": "Abia", "Name": "Abia"},
     {"ID": "Adamawa", "Name": "Adamawa"},
-    {"ID": "Anambra", "Name": "Anambra"},
     {"ID": "Akwa Ibom", "Name": "Akwa Ibom"},
+    {"ID": "Anambra", "Name": "Anambra"},
     {"ID": "Bauchi", "Name": "Bauchi"},
     {"ID": "Bayelsa", "Name": "Bayelsa"},
     {"ID": "Benue", "Name": "Benue"},
@@ -37,13 +36,16 @@ const ngst = [
     {"ID": "Taraba", "Name": "Taraba"},
     {"ID": "Yobe", "Name": "Yobe"},
     {"ID": "Zamfara", "Name": "Zamfara"},
+    {"ID": "Abuja", "Name": "Abuja"},
     ];
     
   
     
-    var parts = 
-      {
-        "Abia": [
+    var statesWithLgas = 
+      [
+        {
+          name: "Abia",
+         lgas : [
           "Aba North",
           "Aba South",
           "Arochukwu",
@@ -62,8 +64,9 @@ const ngst = [
           "Umuahia North",
           "Umuahia South",
           "Umu-Neochi"
-        ],
-        "Adamawa": [
+        ]},
+        {name: "Adamawa",
+          lgas: [
           "Demsa",
           "Fufore",
           "Ganaye",
@@ -85,31 +88,9 @@ const ngst = [
           "Toungo",
           "Yola North",
           "Yola South"
-        ],
-        "Anambra": [
-          "Aguata",
-          "Anambra East",
-          "Anambra West",
-          "Anaocha",
-          "Awka North",
-          "Awka South",
-          "Ayamelum",
-          "Dunukofia",
-          "Ekwusigo",
-          "Idemili North",
-          "Idemili south",
-          "Ihiala",
-          "Njikoka",
-          "Nnewi North",
-          "Nnewi South",
-          "Ogbaru",
-          "Onitsha North",
-          "Onitsha South",
-          "Orumba North",
-          "Orumba South",
-          "Oyi"
-        ],
-        "Akwa Ibom": [
+        ]},
+        {name: "Akwa Ibom",
+          lgas: [
           "Abak",
           "Eastern Obolo",
           "Eket",
@@ -141,8 +122,35 @@ const ngst = [
           "Uruan",
           "Urue-Offong/Oruko ",
           "Uyo"
-        ],
-        "Bauchi": [
+        ]},
+        {name: "Anambra",
+          lgas: [
+          "Aguata",
+          "Anambra East",
+          "Anambra West",
+          "Anaocha",
+          "Awka North",
+          "Awka South",
+          "Ayamelum",
+          "Dunukofia",
+          "Ekwusigo",
+          "Idemili North",
+          "Idemili south",
+          "Ihiala",
+          "Njikoka",
+          "Nnewi North",
+          "Nnewi South",
+          "Ogbaru",
+          "Onitsha North",
+          "Onitsha South",
+          "Orumba North",
+          "Orumba South",
+          "Oyi"
+        ]},
+      
+        {
+          name: "Bauchi",
+          lgas: [
           "Alkaleri",
           "Bauchi",
           "Bogoro",
@@ -162,8 +170,10 @@ const ngst = [
           "Toro",
           "Warji",
           "Zaki"
-        ],
-        "Bayelsa": [
+        ]},
+        {
+          name: "Bayelsa",
+          lgas: [
           "Brass",
           "Ekeremor",
           "Kolokuma/Opokuma",
@@ -172,8 +182,9 @@ const ngst = [
           "Sagbama",
           "Southern Jaw",
           "Yenegoa"
-        ],
-        "Benue": [
+        ]},
+        {name: "Benue",
+          lgas: [
           "Ado",
           "Agatu",
           "Apa",
@@ -197,8 +208,9 @@ const ngst = [
           "Ukum",
           "Ushongo",
           "Vandeikya"
-        ],
-        "Borno": [
+        ]},
+        {name: "Borno",
+          lgas: [
           "Abadam",
           "Askira/Uba",
           "Bama",
@@ -226,8 +238,9 @@ const ngst = [
           "Ngala",
           "Nganzai",
           "Shani"
-        ],
-        "Cross River": [
+        ]},
+        {name: "Cross River",
+          lgas: [
           "Akpabuyo",
           "Odukpani",
           "Akamkpa",
@@ -246,8 +259,9 @@ const ngst = [
           "Bekwara",
           "Bakassi",
           "Calabar Municipality"
-        ],
-        "Delta": [
+        ]},
+        {name: "Delta",
+          lgas: [
           "Oshimili",
           "Aniocha",
           "Aniocha South",
@@ -273,8 +287,9 @@ const ngst = [
           "Ukwani",
           "Oshimili North",
           "Patani"
-        ],
-        "Ebonyi": [
+        ]},
+        {name:"Ebonyi",
+          lgas: [
           "Afikpo South",
           "Afikpo North",
           "Onicha",
@@ -287,26 +302,9 @@ const ngst = [
           "Ohaukwu",
           "Ebonyi",
           "Ivo"
-        ],
-        "Enugu": [
-          "Enugu South,",
-          "Igbo-Eze South",
-          "Enugu North",
-          "Nkanu",
-          "Udi Agwu",
-          "Oji-River",
-          "Ezeagu",
-          "IgboEze North",
-          "Isi-Uzo",
-          "Nsukka",
-          "Igbo-Ekiti",
-          "Uzo-Uwani",
-          "Enugu Eas",
-          "Aninri",
-          "Nkanu East",
-          "Udenu."
-        ],
-        "Edo": [
+        ]},
+        {name:"Edo",
+          lgas: [
           "Esan North-East",
           "Esan Central",
           "Esan West",
@@ -322,8 +320,9 @@ const ngst = [
           "Uhunmwonde",
           "Etsako East",
           "Esan South-East"
-        ],
-        "Ekiti": [
+        ]},  
+         {name: "Ekiti",
+          lgas: [
           "Ado",
           "Ekiti-East",
           "Ekiti-West",
@@ -340,16 +339,29 @@ const ngst = [
           "Efon",
           "Ise/Orun",
           "Ilejemeje."
-        ],
-        "Abuja": [
-          "Abaji",
-          "AMAC",
-          "Bwari",
-          "Gwagwalada",
-          "Kuje",
-          "Kwali"
-        ],
-        "Gombe": [
+        ]},
+        {name: "Enugu",
+          lgas: [
+          "Enugu South,",
+          "Igbo-Eze South",
+          "Enugu North",
+          "Nkanu",
+          "Udi Agwu",
+          "Oji-River",
+          "Ezeagu",
+          "IgboEze North",
+          "Isi-Uzo",
+          "Nsukka",
+          "Igbo-Ekiti",
+          "Uzo-Uwani",
+          "Enugu Eas",
+          "Aninri",
+          "Nkanu East",
+          "Udenu."
+        ]},
+  
+        {name: "Gombe",
+          lgas: [
           "Akko",
           "Balanga",
           "Billiri",
@@ -361,8 +373,9 @@ const ngst = [
           "Gombe",
           "Nafada/Bajoga",
           "Yamaltu/Delta."
-        ],
-        "Imo": [
+        ]},
+        {name: "Imo",
+          lgas: [
           "Aboh-Mbaise",
           "Ahiazu-Mbaise",
           "Ehime-Mbano",
@@ -390,8 +403,9 @@ const ngst = [
           "Owerri-Municipal",
           "Owerri North",
           "Owerri West"
-        ],
-        "Jigawa": [
+        ]},
+        {name: "Jigawa",
+          lgas: [
           "Auyo",
           "Babura",
           "Birni Kudu",
@@ -418,8 +432,9 @@ const ngst = [
           "Sule-Tankarkar",
           "Taura",
           "Yankwashi"
-        ],
-        "Kaduna": [
+        ]},
+        {name: "Kaduna",
+          lgas: [
           "Birni-Gwari",
           "Chikun",
           "Giwa",
@@ -443,8 +458,9 @@ const ngst = [
           "Soba",
           "Zango-Kataf",
           "Zaria"
-        ],
-        "Kano": [
+        ]},
+        {name: "Kano",
+          lgas: [
           "Ajingi",
           "Albasu",
           "Bagwai",
@@ -490,8 +506,9 @@ const ngst = [
           "Ungogo",
           "Warawa",
           "Wudil"
-        ],
-        "Katsina": [
+        ]},
+        {name: "Katsina",
+          lgas: [
           "Bakori",
           "Batagarawa",
           "Batsari",
@@ -526,8 +543,9 @@ const ngst = [
           "Safana",
           "Sandamu",
           "Zango"
-        ],
-        "Kebbi": [
+        ]},
+        {name: "Kebbi",
+          lgas: [
           "Aleiro",
           "Arewa-Dandi",
           "Argungu",
@@ -549,8 +567,9 @@ const ngst = [
           "Wasagu/Danko",
           "Yauri",
           "Zuru"
-        ],
-        "Kogi": [
+        ]},
+        {name: "Kogi",
+          lgas: [
           "Adavi",
           "Ajaokuta",
           "Ankpa",
@@ -572,8 +591,9 @@ const ngst = [
           "Omala",
           "Yagba East",
           "Yagba West"
-        ],
-        "Kwara": [
+        ]},
+        {name: "Kwara",
+          lgas: [
           "Asa",
           "Baruten",
           "Edu",
@@ -589,8 +609,9 @@ const ngst = [
           "Oke-Ero",
           "Oyun",
           "Pategi"
-        ],
-        "Lagos": [
+        ]},
+        {name: "Lagos",
+          lgas: [
           "Agege",
           "Ajeromi-Ifelodun",
           "Alimosho",
@@ -611,8 +632,9 @@ const ngst = [
           "Oshodi-Isolo",
           "Shomolu",
           "Surulere"
-        ],
-        "Nasarawa": [
+        ]},
+        {name: "Nasarawa",
+          lgas: [
           "Akwanga",
           "Awe",
           "Doma",
@@ -626,8 +648,9 @@ const ngst = [
           "Obi",
           "Toto",
           "Wamba"
-        ],
-        "Niger": [
+        ]},
+        {name: "Niger",
+          lgas: [
           "Agaie",
           "Agwara",
           "Bida",
@@ -653,8 +676,9 @@ const ngst = [
           "Suleja",
           "Tafa",
           "Wushishi"
-        ],
-        "Ogun": [
+        ]},
+        {name: "Ogun",
+          lgas: [
           "Abeokuta North",
           "Abeokuta South",
           "Ado-Odo/Ota",
@@ -675,8 +699,9 @@ const ngst = [
           "Odogbolu",
           "Remo North",
           "Shagamu"
-        ],
-        "Ondo": [
+        ]},
+        {name: "Ondo",
+          lgas: [
           "Akoko North East",
           "Akoko North West",
           "Akoko South Akure East",
@@ -696,8 +721,9 @@ const ngst = [
           "Ondo West",
           "Ose",
           "Owo"
-        ],
-        "Osun": [
+        ]},
+        {name: "Osun",
+          lgas: [
           "Aiyedade",
           "Aiyedire",
           "Atakumosa East",
@@ -728,8 +754,9 @@ const ngst = [
           "Oriade",
           "Orolu",
           "Osogbo"
-        ],
-        "Oyo": [
+        ]},
+        {name: "Oyo",
+          lgas: [
           "Afijio",
           "Akinyele",
           "Atiba",
@@ -762,8 +789,9 @@ const ngst = [
           "Saki East",
           "Saki West",
           "Surulere"
-        ],
-        "Plateau": [
+        ]},
+        {name: "Plateau",
+          lgas: [
           "Barikin Ladi",
           "Bassa",
           "Bokkos",
@@ -781,8 +809,9 @@ const ngst = [
           "Riyom",
           "Shendam",
           "Wase"
-        ],
-        "Rivers": [
+        ]},
+        {name: "Rivers",
+          lgas: [
           "Abua/Odual",
           "Ahoada East",
           "Ahoada West",
@@ -806,8 +835,9 @@ const ngst = [
           "Oyigbo",
           "Port-Harcourt",
           "Tai"
-        ],
-        "Sokoto": [
+        ]},
+        {name: "Sokoto",
+          lgas: [
           "Binji",
           "Bodinga",
           "Dange-shnsi",
@@ -831,8 +861,9 @@ const ngst = [
           "Wamako",
           "Wurno",
           "Yabo"
-        ],
-        "Taraba": [
+        ]},
+        {name: "Taraba",
+          lgas: [
           "Ardo-kola",
           "Bali",
           "Donga",
@@ -849,8 +880,9 @@ const ngst = [
           "Wukari",
           "Yorro",
           "Zing"
-        ],
-        "Yobe": [
+        ]},
+        {name: "Yobe",
+          lgas: [
           "Bade",
           "Bursari",
           "Damaturu",
@@ -868,8 +900,9 @@ const ngst = [
           "Tarmua",
           "Yunusari",
           "Yusufari"
-        ],
-        "Zamfara": [
+        ]},
+        {name: "Zamfara",
+          lgas: [
           "Anka",
           "Bakura",
           "Birnin Magaji",
@@ -885,6 +918,15 @@ const ngst = [
           "Talata Mafara",
           "Tsafe",
           "Zurmi"
-        ]
-      };
-      export {ngst, parts}
+        ]},
+        {name: "Abuja",
+          lgas: [
+          "Abaji",
+          "AMAC",
+          "Bwari",
+          "Gwagwalada",
+          "Kuje",
+          "Kwali"
+        ]}
+      ];
+      export {ngst, statesWithLgas}
