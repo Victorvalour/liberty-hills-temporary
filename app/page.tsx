@@ -1,5 +1,6 @@
 "use client"
 
+import toast, { Toaster } from 'react-hot-toast';
 import { MovingButton, MovingBorder } from "@/components/ui/moving-border";
 import { Button } from "@/components/ui/button"
 import {
@@ -38,8 +39,13 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { ngst, statesWithLgas } from "@/utils/states-and-lgas";
 import { useState } from "react";
 
+import { db } from "./firebaseConfig";
+import {collection, addDoc, serverTimestamp} from 'firebase/firestore'
+
 
  const states = ngst.map(a => a.Name);
+ const stlg = statesWithLgas.map(a => a.lgas);
+
 
 /*const stringLiterals = states.map(state => z.literal(state)) */
 
@@ -47,60 +53,91 @@ import { useState } from "react";
   errorMap: () => ({ message: "Please select a valid state" }),
 }); */
 
-let lgas: string[];
-let selectedState: string = ""
+interface EngineerInfo {
+  fullname: string;
+  email: string
+  phone: string
+  state: string
+  lga: string
+
+}
 
 
 
-
-//
 const formSchema = z.object({
   fullname: z.string().min(2, {
     message: "Username must be at least 2 characters.",
   }),
   email: z.string().min(2, {
-    message: "Email must be at least 2 characters.",
+   message: "Please enter a valid email",
   }),
-  state:  z.custom<string>((val) => statesWithLgas.includes(val)),
-  lga: z.string()
+  phone: z.string().min(2, {
+    message: "Phone must be at least 10 characters.",
+   }),
+  state:  z.string().min(1, {
+    message: "Please select a state!",
+   }),
+  lga: z.string().min(2, {
+    message: "Please select a local government area!",
+   })
   
-  
-
 })
 
-console.log(selectedState)
+async function addDataToFirestore(values: EngineerInfo) {
+  try {
+    const docRef = await addDoc(collection(db, "engineers"), {
+      ...values,
+      timestamp: serverTimestamp()
+  })
+    console.log("Document created with  ID", docRef.id);
+    return true
+  } catch (error) {
+    console.error("Error adding  document ", error)
+    toast.error('Oops, something went wrong!')
+    return false
+  }
+}
+
 
 export default function Home() {
 
 
-  console.log(selectedState)
+  const [isSuccessful, setIsSuccessful] = useState(false)
+
     // 1. Define your form.
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
       defaultValues: {
         fullname: "",
         email: "",
+        phone: "",
         state: "",
         lga: ""
-
+ 
       },
     })
 
 const state = form.watch("state")
-console.log(state)
 const getLGAs = (stateID: string) => {
 
   const state = states.find((state) => state.toLowerCase() === stateID.toLowerCase());
-console.log(state)
-
+const lgas = statesWithLgas.find((selState) => selState.name.toLowerCase() === state?.toLowerCase())
+return lgas?.lgas
 }
-console.log(getLGAs(state))
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-      // Do something with the form values.
-      // ✅ This will be type-safe and validated.
+const lgas: string[] | undefined = getLGAs(state)
+
+
+   async function onSubmit(values: z.infer<typeof formSchema>) {
+     const added = await addDataToFirestore(values)
+     if (added) {
+      form.reset()
+      setIsSuccessful(true)
+     }
+   
+     
       console.log(values)
-      console.log("Submit button worked")
+      toast.success('Successful 🤩')
       
     }
 
@@ -177,6 +214,18 @@ console.log(getLGAs(state))
                     </FormItem>
                     )}
                     />
+                    <FormField
+          control={form.control}
+          name="phone"
+          render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <FormControl>
+                    <Input type="text" placeholder="Enter your Phone Number" className="bg-slate-100 text-slate-900" {...field}/>
+                    </FormControl>
+                    </FormItem>
+                    )}
+                    />
 <FormField
           control={form.control}
           name="state"
@@ -226,9 +275,9 @@ console.log(getLGAs(state))
        
         <SelectGroup>
           
-          {ngst.map((state) => {
-      return   <div key={state.ID}>
-  <SelectItem value={state.ID}>{state.Name}</SelectItem>
+          {lgas && lgas.map((lga) => {
+      return   <div key={lga}>
+  <SelectItem value={lga}>{lga}</SelectItem>
   </div>
         })}
           
@@ -255,9 +304,7 @@ console.log(getLGAs(state))
      </div>
      </div>
 
-     <section className="body">
-
-     </section>
+     <Toaster />
       </main>
 
      
