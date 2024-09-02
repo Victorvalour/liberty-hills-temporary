@@ -41,6 +41,7 @@ import { useState } from "react";
 
 import { db } from "./firebaseConfig";
 import {collection, addDoc, serverTimestamp} from 'firebase/firestore'
+import Link from 'next/link';
 
 
  const states = ngst.map(a => a.Name);
@@ -148,9 +149,8 @@ const lgas: string[] | undefined = getLGAs(state)
     ">
       <div className="hero flex min-h-screen   max-w-[1920px]
     mx-auto
-   
     md:p-0">
-      <div className="hidden md:block w-1/2 h-screen">
+      <div className="hidden md:block w-1/2 h-screen border-b-4 border-b-amber-600">
        <div className="relative bg-gradient-to-tr from-blue-950 to-slate-700 w-full h-full opacity-80 ">  <Image src={Electrician} alt="Electrician" className="w-full h-full object-cover absolute mix-blend-overlay opacity-50"/>
        </div>
       
@@ -161,9 +161,18 @@ const lgas: string[] | undefined = getLGAs(state)
       <div className="flex justify-between w-full items-center px-4 py-6">
       <Image src={Logo} alt="logo" width={100} className="rounded-2xl w-[100px]" />
         <div className="flex gap-4 text-2xl text-slate-100">
+
+    <Link href="https://web.facebook.com/libertyhillsystems">
         <FaSquareFacebook />
+      </Link>
+
+      <Link href="https://www.instagram.com/libertyhillselectric?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
         <FaInstagramSquare />
+        </Link>
+
+    <Link href="">
         <FaSquareXTwitter />
+        </Link>
         </div>
       </div>
     
